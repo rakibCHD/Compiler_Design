@@ -1,85 +1,44 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
+#include<bits/stdc++.h>
+
 using namespace std;
 
-void isValidIdentifier(string st)
-{
-    int int_pos,float_pos,double_pos,char_pos,string_pos,long_pos,void_pos,bool_pos;
-    string final_string;
+int isFoundKeyword(string input){
 
-    if(st[st.size()-1]==';')
-    {
-        for(int i=0;i<st.size();i++)
+ string final_string;
+
+    for(int i=0;i<input.size();i++)
         {
-          if(st[i]!=' ' && st[i]!=';')
-            final_string +=st[i];
+          if(input[i]!=' ')
+            final_string +=input[i];
         }
-         int_pos =final_string.find("int");
-         float_pos =final_string.find("float");
-         double_pos =final_string.find("double");
-         char_pos =final_string.find("char");
-         string_pos =final_string.find("string");
-         long_pos =final_string.find("long");
-         void_pos =final_string.find("void");
-         bool_pos =final_string.find("bool");
 
-        if(int_pos==0||float_pos==0||double_pos==0||char_pos==0
-         ||string_pos==0||long_pos==0||void_pos==0||bool_pos==0)
-         {
-            cout<<"Valid Declaration."<<endl;
+    string textFile="keyword.txt",keyword;
 
-             if(int_pos==0){
-                cout<<"Data type is:int"<<endl;
-                final_string.erase(int_pos,3);
-                cout<<"Variable is :"<<final_string<<endl;
-             }
-             if(float_pos==0){
-                cout<<"Data type is:float"<<endl;
-                final_string.erase(float_pos,5);
-                cout<<"Variable is :"<<final_string<<endl;
-             }
-             if(double_pos==0){
-                cout<<"Data type is:double"<<endl;
-                final_string.erase(double_pos,6);
-                cout<<"Variable is :"<<final_string<<endl;
-             }
-             if(char_pos==0){
-                cout<<"Data type is:char"<<endl;
-                final_string.erase(char_pos,4);
-                cout<<"Variable is :"<<final_string<<endl;
-             }
-             if(string_pos==0){
-                cout<<"Data type is:string"<<endl;
-                final_string.erase(string_pos,6);
-                cout<<"Variable is :"<<final_string<<endl;
-             }
-              if(long_pos==0){
-                cout<<"Data type is:long"<<endl;
-                final_string.erase(long_pos,4);
-                cout<<"Variable is :"<<final_string<<endl;
-             }
-              if(void_pos==0){
-                cout<<"Data type is:void"<<endl;
-                final_string.erase(void_pos,4);
-                cout<<"Variable is :"<<final_string<<endl;
-             }
-              if(bool_pos==0){
-                cout<<"Data type is:bool"<<endl;
-                final_string.erase(bool_pos,4);
-                cout<<"Variable is :"<<final_string<<endl;
-             }
-         }
-         else
-            cout<<"Invalid data type!!!!!"<<endl;
+    ifstream file(textFile);
+
+    while(getline(file,keyword))
+    {
+        int pos =keyword.find(final_string);
+        if ( pos >= 0)
+        {
+            return 1;
+        }
     }
-    else
-        cout<<"Invalid Declaration!!!"<<endl;
+    return 0;
 }
 
-int main() {
-    string s;
-    cout<<"-------------INPUT----------"<<endl;
-    getline(cin,s);
-    isValidIdentifier(s);
-    return 0;
+void check(string st)
+{
+    if(isFoundKeyword(st)==1)
+        cout<<"It is a keyWord"<<endl;
+    else
+        cout<<"It is not a keyWord"<<endl;
+}
+
+int main(){
+    string user_input;
+    getline(cin,user_input);
+    check(user_input);
 }
