@@ -4,29 +4,25 @@
 
 using namespace std;
 
-int isFoundKeyword(string input){
-
- string final_string;
+int isFoundKeyword(string input)
+{
+    string final_string,keyword;
 
     for(int i=0;i<input.size();i++)
-        {
-          if(input[i]!=' ')
-            final_string +=input[i];
-        }
+    {
+      if(input[i]!=' ')
+        final_string +=input[i];
+    }
 
-    string textFile="keyword.txt",keyword;
-
-    ifstream file(textFile);
+    ifstream file("keyword.txt");
 
     while(getline(file,keyword))
     {
-        int pos =keyword.find(final_string);
+      int pos =keyword.find(final_string);
         if ( pos >= 0)
-        {
             return 1;
-        }
     }
-    return 0;
+  return 0;
 }
 
 void check(string st)
@@ -39,6 +35,7 @@ void check(string st)
 
 int main(){
     string user_input;
-    getline(cin,user_input);
+    cout << "--------INPUT--------"<<endl;
+    getline(cin, user_input);
     check(user_input);
 }
