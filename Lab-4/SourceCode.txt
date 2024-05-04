@@ -1,0 +1,17 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+
+int main(){
+
+double d=0.5+1;
+int $money=100;
+
+cout<<"Hello";
+int x();
+
+//comment
+
+}
